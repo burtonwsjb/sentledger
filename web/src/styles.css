@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-on-accent: var(--on-accent);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-ok: var(--ok);
+}
+
+:root {
+  --paper: #f7f6f2; --paper-2: #efede6; --card: #ffffff; --ink: #14181a; --ink-2: #3b4246; --muted: #667075;
+  --line: #dfddd4; --line-2: #ebe9e2; --accent: #0f5c4d; --accent-2: #0b4a3e; --accent-soft: #e1efe9; --accent-ink: #0b4a3e;
+  --on-accent: #ffffff; --s1: #00806a; --s2: #b07a12; --s3: #4c6fbf; --gold: #9a6a14; --gold-soft: #f6ecd8; --danger: #a33a2c; --danger-soft: #f9e3df; --ok: #1b6b45;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1211; --paper-2: #131816; --card: #161c1a; --ink: #edf1ef; --ink-2: #c4ccc8; --muted: #8d9894;
+    --line: #29322f; --line-2: #1f2624; --accent: #58c2a6; --accent-2: #7bd3bb; --accent-soft: #16302a; --accent-ink: #9fe0ce;
+    --on-accent: #07130f; --s1: #2f9a80; --s2: #b3852c; --s3: #6f8bd0; --gold: #e0b25c; --gold-soft: #2a2213; --danger: #f08a7a; --danger-soft: #3a1c17; --ok: #6fd39e;
+    color-scheme: dark;
+  }
+}
+
+html, body, #root { height: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.font-serif { letter-spacing: -0.015em; }
+
+/* rich text editor */
+.editor .ProseMirror { min-height: 220px; padding: 14px 16px; outline: none; line-height: 1.6; }
+.editor .ProseMirror p { margin: 0 0 0.8em; }
+.editor .ProseMirror ul, .editor .ProseMirror ol { padding-left: 1.4em; margin: 0 0 0.8em; }
+.editor .ProseMirror a { color: var(--accent); text-decoration: underline; }
+.editor .ProseMirror h2 { font-size: 1.25rem; font-weight: 600; margin: 0.6em 0 0.4em; }
+.editor .ProseMirror blockquote { border-left: 3px solid var(--line); padding-left: 12px; color: var(--ink-2); margin: 0 0 0.8em; }
+.editor .ProseMirror p.is-editor-empty:first-child::before { content: attr(data-placeholder); color: var(--muted); float: left; height: 0; pointer-events: none; }
+
+@keyframes sl-spin { to { transform: rotate(360deg); } }
+.spin { animation: sl-spin 0.8s linear infinite; }
+@keyframes sl-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.toast-in { animation: sl-in 0.18s ease-out; }
+@media (prefers-reduced-motion: reduce) { .spin, .toast-in { animation: none; } }
